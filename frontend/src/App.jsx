@@ -1,8 +1,15 @@
+import { Toaster } from "sonner"
+import { Outlet } from "react-router-dom"
+
+
 function App() {
 
   return (
     <>
-    Boiler plate    
+    <main>
+        <Outlet />
+    </main>
+    <Toaster />
     </>
   )
 }
