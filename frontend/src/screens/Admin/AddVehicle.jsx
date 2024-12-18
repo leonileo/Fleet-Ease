@@ -6,6 +6,8 @@ import { useDropzone } from 'react-dropzone'
 import { useState } from "react";
 
 const AddVehicle = () => {
+  document.title = "Fleet Ease - Add vehicle"
+
   // states
   const [vName, setVName] = useState("")
   const [vPlate, setVPlate] = useState("")
