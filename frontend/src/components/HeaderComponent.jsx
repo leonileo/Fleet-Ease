@@ -8,7 +8,7 @@ const HeaderComponent = ({ page }) => {
   return (
     page === "dashboard" 
     ?  <Navbar fluid className='bg-[#1D3557] h-[57px] p-2 px-4 pr-10 text-white'>
-      <h1 className="sm:text-2xl">FleetEase</h1>
+      <h1 className="sm:text-2xl"><Link to={'/'}>FleetEase</Link></h1>
       <div className="flex md:order-2 px-5 items-center gap-5">
         <p className='font-semibold '>Abebe</p>
         <Dropdown
