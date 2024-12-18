@@ -3,6 +3,7 @@ import FeaturesComponent from "../components/FeaturesComponent"
 import HeaderComponent from "../components/HeaderComponent"
 
 const HomeScreen = () => {
+  document.title = "Fleet Ease"
   return (
     <div>
         <HeaderComponent />
