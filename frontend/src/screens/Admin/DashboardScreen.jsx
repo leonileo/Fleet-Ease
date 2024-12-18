@@ -8,6 +8,9 @@ import vp from '../../assets/vehicle-picture.png'
 import ViewComponent from '../../components/ViewComponent'
 
 const DashboardScreen = () => {
+
+  document.title = "Fleet Ease - Dashboard"
+
   // states
   const [viewModal, setViewModal] = useState(false)
   const [updateModal, setUpdateModal] = useState(false)
