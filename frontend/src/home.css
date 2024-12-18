@@ -1,0 +1,17 @@
+/* swiper */
+
+.swiper-pagination{
+    width: 100% !important;
+    height: 5vh;
+    display: flex;
+    padding-left: 1%;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff !important;
+}
+.swiper-pagination-bullet-active-main{
+    background-color: #F4A261 !important;
+}
