@@ -1,10 +1,10 @@
 // index.js
 // Import necessary modules
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const path = require('path');
+require('dotenv').config();
+const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db.js')
-require('dotenv');
 
 // routes
 const vehicleRoutes = require('./routes/vehicleRoute.js')
@@ -18,7 +18,7 @@ const port = process.env.PORT || 5000
 const ENV = process.env.NODE_ENV || "development"
 
 // connect db and initialize app
-// connectDB() 
+connectDB() 
 const app = express()
 
 // main function
@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use('/api-v1/dashboard', vehicleRoutes);
-// app.use('/api-v1/upload', uploadRoutes);
+app.use('/api-v1/upload', uploadRoutes);
 
 if (process.env.NODE_ENV === "production") {
     app.get('*', (req, res) => 
