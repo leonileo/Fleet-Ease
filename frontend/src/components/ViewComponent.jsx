@@ -5,6 +5,7 @@ import { RxUpdate } from "react-icons/rx";
 import { BsFuelPump } from "react-icons/bs";
 import { LuCog } from "react-icons/lu";
 import { FcInTransit } from "react-icons/fc";
+import moment from "moment";
 
 
 const ViewComponent = ({ vehicle, setViewModal, setUpdateModal }) => {
@@ -52,7 +53,7 @@ const ViewComponent = ({ vehicle, setViewModal, setUpdateModal }) => {
             <div className="vehicle-info xl:flex xl:gap-24 gap-4 space-y-4 xl:space-y-0">
                 {/* vehicle picture */}
                 <div className="vehicle-picture xl:w-[700px] xl:h-[450px] xl:max-h-max max-h-[750px] flex justify-center items-start rounded overflow-hidden">
-                <img src={vPicture} alt={`Photograph of ${vName} vehicle.`} className="h-auto" />
+                    <img src={vPicture} alt={`Photograph of ${vName} vehicle.`} className="h-full" />
                 </div>
 
                 {/* vehicle info */}
@@ -92,7 +93,7 @@ const ViewComponent = ({ vehicle, setViewModal, setUpdateModal }) => {
                 {/* vehicle regesteration date */}
                 <div className="vrd group grid w-full min-h-[15vh] space-y-3 font-semibold sm:text-xl relative bg-gradient-to-tr from-[#F4A261] to-[#1D3557] from p-5 rounded-lg">
                     <p>Vehicle registeration date</p>
-                    <span className='sm:text-2xl font-bold'>{vRdate}</span>
+                    <span className='sm:text-2xl font-bold'>{moment(vRdate).format('YYYY-MM-DD A')}</span>
                     {/* icon */}
                     <div className='absolute bottom-0 right-0 p-2'><CiCalendarDate className='w-10 h-10 group-hover:text-white transition-all text-[rgba(255,255,255,.5)]'/></div>
                 </div>
@@ -107,8 +108,8 @@ const ViewComponent = ({ vehicle, setViewModal, setUpdateModal }) => {
 
                 {/* vehicle registeration date */}
                 <div className="vlud group grid w-full min-h-[15vh] space-y-3 font-semibold sm:text-xl relative bg-gradient-to-tl from-[#F4A261] to-[#1D3557] from p-5 rounded-lg">
-                    <p>Vehicle registeration date</p>
-                    <span className='sm:text-2xl font-bold'>{vUdate}</span>
+                    <p>Vehicle update date</p>
+                    <span className='sm:text-2xl font-bold'>{moment(vUdate).format('YYYY-MM-DD hh:mm A')}</span>
                     {/* icon */}
                     <div className='absolute bottom-0 right-0 p-2'><RxUpdate className='w-10 h-10 group-hover:text-white transition-all text-[rgba(255,255,255,.5)]'/></div>
                 </div>
