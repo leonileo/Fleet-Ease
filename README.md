@@ -3,6 +3,7 @@
 ### Table of contents
 * [Project name](#project-name)
 * [Introduction](#introduction)
+* [Figma file](#figma-file)
 * [Directories](#directories)
 * [Installation](#installation)
 * [Contributing](#contributing)
@@ -14,6 +15,10 @@ Fleet-East (Mini-App)
 Welcome to Fleet Ease, the Mini App for streamlined fleet management. This platform empowers businesses to efficiently monitor and manage their vehicles. Explore the live demo here.
 
 If you find this project insightful or have suggestions for improvement, feel free to connect with me on LinkedIn. 
+
+## Figma file
+* [UI DESIGN](https://www.figma.com/design/WAPXVdS7fxbEd9EJ9e1Uvk/Fleet-Ease-ui-design?node-id=0-1&t=Jd3Rcu1Bg6r5zcxj-1)
+* [Sitemap](https://www.figma.com/board/378KZB08gfEn9oLAeQKrSR/FleetEase-sitemap?t=Jd3Rcu1Bg6r5zcxj-1)
 
 ## Directories
 * [Frontend](./frontend/)
