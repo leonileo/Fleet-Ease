@@ -11,7 +11,7 @@ const router = express.Router();
 // main function
 
 cloudinary.config({
-  cloud_name: process.env.cloudinary_name,
+  cloud_name: process.env.cloud_name,
   api_key: process.env.cloudinary_api_key,
   api_secret: process.env.cloudinary_api_secret,
 });
