@@ -20,7 +20,7 @@ Fleet-East (Mini-App)
 ## Introduction
 Welcome to Fleet Ease, the Mini App for streamlined fleet management. This platform empowers businesses to efficiently monitor and manage their vehicles. Explore the live demo here.
 
-If you find this project insightful or have suggestions for improvement, feel free to connect with me on LinkedIn. 
+If you find this project insightful or have suggestions for improvement, feel free to connect with me on LinkedIn. you can find the live demo [here](https://fleet-ease.onrender.com/).
 
 ## Figma file
 * [UI DESIGN](https://www.figma.com/design/WAPXVdS7fxbEd9EJ9e1Uvk/Fleet-Ease-ui-design?node-id=0-1&t=Jd3Rcu1Bg6r5zcxj-1)
