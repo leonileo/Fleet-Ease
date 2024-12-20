@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', dashboard);
 router.post('/add-vehicle', addVehicle);
-router.route('/:vehicleID/')
+router.route('/:vehicleID')
 .put(updateVehicle)
 .delete(removeVehicle);
 
