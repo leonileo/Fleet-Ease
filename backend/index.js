@@ -5,6 +5,8 @@ const path = require('path');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db.js')
+const cors = require('cors');
+
 
 // routes
 const vehicleRoutes = require('./routes/vehicleRoute.js')
@@ -20,6 +22,22 @@ const ENV = process.env.NODE_ENV || "development"
 // connect db and initialize app
 connectDB() 
 const app = express()
+
+
+// cors configuration
+const allowedOrigins = ['http://localhost:5173', ''];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+  })
+);
 
 // main function
 app.use(express.json());
@@ -42,6 +60,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(notFound);
 app.use(errorHandler);
+
 
 // start listening on port 5000
 app.listen(port, () => {
