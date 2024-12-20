@@ -2,14 +2,20 @@
 
 ### Table of contents
 * [Project name](#project-name)
+* [Web app architechture](#web-app-architechture)
 * [Introduction](#introduction)
 * [Figma file](#figma-file)
 * [Directories](#directories)
 * [Installation](#installation)
+* [Usage](#usage)
+* [Features showcased visually](#Features-showcased-visually)
 * [Contributing](#contributing)
 
 ## Project name
 Fleet-East (Mini-App)
+
+## Web app architechture
+<p><img src="./frontend/src/assets/web-architechture.png" /> </p>
 
 ## Introduction
 Welcome to Fleet Ease, the Mini App for streamlined fleet management. This platform empowers businesses to efficiently monitor and manage their vehicles. Explore the live demo here.
