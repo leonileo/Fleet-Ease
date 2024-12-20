@@ -8,7 +8,7 @@
 * [Contributing](#contributing)
 
 ## Project name
-### Fleet-East (Mini-App)
+Fleet-East (Mini-App)
 
 ## Introduction
 Welcome to Fleet Ease, the Mini App for streamlined fleet management. This platform empowers businesses to efficiently monitor and manage their vehicles. Explore the live demo here.
