@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const vehicleSchema = new mongoose.Schema({
     vehicleName: {type: String, required: true, trim: true},
-    vehicleType: {type: String, required: true, enum: ['Car', 'Truck', 'Van', 'Bus', 'Motorbike']},
+    vehicleType: {type: String, required: true, enum: ['Car', 'Truck', 'Van', 'Motorbike']},
     licensePlate: {type: String, unique: true, required: true, trim: true},
     vehicleMileage: {type: Number, required: true, trim: true},
     vehicleStatus: {type: String, required: true, enum: ['Active', 'Maintenance', 'Inactive', 'In Transit'],},
