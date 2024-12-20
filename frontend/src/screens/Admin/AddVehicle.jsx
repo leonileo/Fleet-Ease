@@ -4,6 +4,10 @@ import { FaCircleInfo } from "react-icons/fa6";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import { useDropzone } from 'react-dropzone'
 import { useState } from "react";
+import { useAddVehicleMutation, useUploadImageMutation } from "../../slices/vehicleSlice";
+import { toast } from "sonner"
+import { Spinner } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 
 const AddVehicle = () => {
   document.title = "Fleet Ease - Add vehicle"
@@ -14,8 +18,13 @@ const AddVehicle = () => {
   const [vType, setVType] = useState("")
   const [vStatus, setVStatus] = useState("Active")
   const [vMileage, setVMileage] = useState("")
+  const [file, setFile] = useState(null);
   const [image, setImage] = useState(null);
-  
+  const [uploaded, setUploaded] = useState(false);
+  const [uploadImage, { isLoading: uploadLoader }] = useUploadImageMutation();
+  const [addVehicle, { isLoading }] = useAddVehicleMutation();
+  const navigate = useNavigate();
+
   // dummy data
   const types = [
     {type: "Car"},
@@ -28,8 +37,10 @@ const AddVehicle = () => {
   // Function for drag and drop image.
   const onDrop = (acceptedFiles) => {
     if(acceptedFiles.length > 0) {
-      const file = acceptedFiles[0];
-      setImage(Object.assign(file, { preview: URL.createObjectURL(file) }))
+      const file1 = acceptedFiles[0];
+      console.log(file1)
+      setFile(file1);
+      setImage(Object.assign(file1, { preview: URL.createObjectURL(file1) }))
     }
   }
 
@@ -39,19 +50,49 @@ const AddVehicle = () => {
     maxSize: 5 * 1024 * 1024,
     onDrop,
   })
-
+  
   // Function to submit the form
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    alert(`
-      Name: ${vName}
-      LicensePlate: ${vPlate}
-      Type: ${vType}
-      Status: ${vStatus}
-      Mileage: ${vMileage}
-      Vehicle picture: ${image}
-      `)
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
+
+      try {
+        // this try/catch statment has 2 function, 
+        // that uploads the image then set the image url
+        // and create the vehicle based on the inputs.
+        // the if statement checks if the image is uploaded to cloudinary already or not.
+
+        let res, imageUrl;
+        if (!uploaded) {
+          res = !uploaded && await uploadImage(formData).unwrap();
+          imageUrl = res.imageUrl;
+          setUploaded(true);
+          toast.success(res.message);
+        }
+
+        const response = await addVehicle({ 
+          vehicleName: vName,
+          vehicleType: vType,
+          licensePlate: vPlate,
+          vehicleMileage: Number(vMileage),
+          vehicleStatus: vStatus,
+          vehiclePicture: imageUrl
+        }).unwrap();
+  
+        toast.success(response.message)
+        navigate('/dashboard')
+        location.reload()
+
+      } catch (error) {
+        toast.error(error?.data?.message || error?.error)
+      }
+      
+    } catch (error) {
+        toast.error(error?.data?.message || error?.error)
+    }
   }
 
   return (
@@ -76,10 +117,9 @@ const AddVehicle = () => {
               {/* upload image */}
               <div className="picture flex justify-center items-center my-5">
                 <div 
-                className="xl:w-[40%] xl:h-[400px] h-[250px] text-center grid justify-center items-end bg-white p-4 border-2 border-dashed rounded-md cursor-pointer hover:border-[#1D3557] text-[#1D3557] transition-all"
-                {...getRootProps()}
-                >
-                  <input required {...getInputProps()} />
+                className="xl:w-[40%] relative xl:h-[400px] h-[250px] text-center grid justify-center items-end bg-white p-4 border-2 border-dashed rounded-md cursor-pointer hover:border-[#1D3557] text-[#1D3557] transition-all"
+                {...getRootProps()}>
+                  <input  {...getInputProps()} />
                   {image ? (
                     <div className="xl:w-[500px] w-full flex items-center h-full overflow-hidden rounded">
                       <img 
@@ -95,7 +135,7 @@ const AddVehicle = () => {
                     </div>
                     <p className="text-sm">Drag & drop some images here, or click to select files.</p>
                     <div className="w-full flex justify-center">
-                      <p className="xl:w-[70%]">Please upload an image no larger than 5 MB and with a resolution of 1920 x 1080 pixels or less</p>
+                      <p className="xl:w-[70%] sm:text-[15px] text-sm">Please upload an image no larger than 5 MB and with a resolution of 1920 x 1080 pixels or less</p>
                     </div>
                     </>
                   )}
@@ -154,7 +194,11 @@ const AddVehicle = () => {
                 </div>
 
                 {/* register button */}
-                <button  type="submit" className="my-5 px-24 p-2 bg-[#1D3557] text-white font-semibold rounded-full">Register vehicle</button>
+                {isLoading || uploadLoader ? 
+                <button disabled className="transition-all my-5 px-24 p-2 bg-[#1D3557] text-white font-semibold rounded-full flex gap-3 items-center">Registering <Spinner className="fill-[#457B9D]  w-5 h-5" /></button>
+                : 
+                <button  type="submit" className="my-5 px-24 p-2 bg-[#1D3557] text-white font-semibold rounded-full transition-all">Register vehicle</button>
+                }
 
               </div>
 
