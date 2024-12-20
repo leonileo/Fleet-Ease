@@ -38,7 +38,6 @@ const AddVehicle = () => {
   const onDrop = (acceptedFiles) => {
     if(acceptedFiles.length > 0) {
       const file1 = acceptedFiles[0];
-      console.log(file1)
       setFile(file1);
       setImage(Object.assign(file1, { preview: URL.createObjectURL(file1) }))
     }
