@@ -11,7 +11,7 @@ import SkeletonCard from '../../components/SkeletonCard.jsx'
 import SkeletonTable from '../../components/SkeletonTable.jsx'
 import { useDashboardQuery } from '../../slices/vehicleSlice.js'
 
-import vp from '../../assets/vehicle-picture.png'
+// import vp from '../../assets/vehicle-picture.png'
 import { CiWifiOff } from 'react-icons/ci'
 import { BsInboxes } from "react-icons/bs";
 import DeleteComponent from '../../components/DeleteComponent.jsx'
