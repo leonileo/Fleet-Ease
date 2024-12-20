@@ -24,7 +24,8 @@ const dashboard = asyncHandler( async (req, res) => {
 // @access  Public
 const addVehicle = asyncHandler( async (req, res) => {
     // addVehicle function
-    const {vehicleName, vehicleType, licensePlate, vehicleMileage, vehicleStatus, vehicleRegesterationDate, vehicleLastUpdatedAt, vehiclePicture} = req.body;
+    const {vehicleName, vehicleType, licensePlate, vehicleMileage, vehicleStatus, vehiclePicture} = req.body;
+
 
     try {
         const vehicleFound = await Vehicle.findOne({ licensePlate })
@@ -39,23 +40,13 @@ const addVehicle = asyncHandler( async (req, res) => {
                 licensePlate, 
                 vehicleMileage, 
                 vehicleStatus, 
-                vehicleRegesterationDate, 
-                vehicleLastUpdatedAt,
                 vehiclePicture
             })
     
             // if successfully added
             if (vehicle) {
                 res.status(201).json({
-                    _id: vehicle._id,
-                    vehicleName,
-                    vehicleType,
-                    licensePlate,
-                    vehicleMileage,
-                    vehicleStatus,
-                    vehicleRegesterationDate,
-                    vehicleLastUpdatedAt,
-                    vehiclePicture,
+                    message: 'Vehicle created successfully'
                 })
             } else {
                 res.status(400);
@@ -74,29 +65,21 @@ const updateVehicle = asyncHandler( async (req, res) => {
     // updateVehicle function
     const vehicleId = req.params.vehicleID
     const vehicle = await Vehicle.findOne({_id: vehicleId})
-    const { vehicleName, vehicleType, licensePlate, vehicleMileage, vehicleStatus, vehicleRegesterationDate, vehicleLastUpdatedAt, vehiclePicture } = req.body;
-    
+    const { vehicleName, vehicleType, licensePlate, vehicleMileage, vehicleStatus, vehiclePicture } = req.body;
+
     if (vehicle) {
         vehicle.vehicleName = vehicleName ? vehicleName : vehicle.vehicleName;
         vehicle.vehicleType = vehicleType ? vehicleType : vehicle.vehicleType;
         vehicle.licensePlate = licensePlate ? licensePlate : vehicle.licensePlate;
         vehicle.vehicleMileage = vehicleMileage ? vehicleMileage : vehicle.vehicleMileage;
         vehicle.vehicleStatus = vehicleStatus ? vehicleStatus : vehicle.vehicleStatus;
-        vehicle.vehicleRegesterationDate = vehicleRegesterationDate ? vehicleRegesterationDate : vehicle.vehicleRegesterationDate;
-        vehicle.vehicleLastUpdatedAt = vehicleLastUpdatedAt ? vehicleLastUpdatedAt : vehicle.vehicleLastUpdatedAt;
+        vehicle.vehicleLastUpdatedAt = Date.now();
         vehicle.vehiclePicture = vehiclePicture ? vehiclePicture : vehicle.vehiclePicture;
 
         await vehicle.save();
 
-        res.json({
-            vehicleName: vehicle.vehicleName,
-            vehicleType: vehicle.vehicleType,
-            licensePlate: vehicle.licensePlate,
-            vehicleMileage: vehicle.vehicleMileage,
-            vehicleStatus: vehicle.vehicleStatus,
-            vehicleRegesterationDate: vehicle.vehicleRegesterationDate,
-            vehicleLastUpdatedAt: Date.now(),
-            vehiclePicture: vehicle.vehiclePicture,
+        res.status(201).json({
+            message: 'Vehicle Updated successfully.'
         })
     } else {
         res.status(404);
