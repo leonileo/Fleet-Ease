@@ -19,12 +19,12 @@ export const vehicleApiSlice = apiSlice.injectEndpoints({
             query: (data) => ({
                 url: `${VEHICLE_URL}dashboard/${data.id}`,
                 method: 'PUT',
-                data: data
+                body: data
             })
         }),
         deleteVehicle: builder.mutation({
-            query: (vehicleId) => ({
-                url: `${VEHICLE_URL}dashboard/${vehicleId}`,
+            query: (data) => ({
+                url: `${VEHICLE_URL}dashboard/${data.vehicleID}`,
                 method: 'DELETE',
             })
         }),
